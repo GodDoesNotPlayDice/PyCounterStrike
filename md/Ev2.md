@@ -107,3 +107,37 @@ discreto, o variable categórica nominal u ordinal.
 8. Un jugador que ha perdido más de 100 rondas es un jugador experimentado.
 9. Un jugador que ha jugado más de 100 rondas es un jugador experimentado.
 10. Un jugador que ha jugado más de 100 partidas es un jugador experimentado.
+
+
+### Tipos de variables pt6
+
+
+1) Map: Cualitativa, Nominal
+2) Equipo: Cualitativa, Nominal
+3) Team_ID: Cuantitativa, Discreta
+4) Match_ID: Cuantitativa, Discreta
+5) Round_ID: Cuantitativa, Discreta
+6) Round_W: Cualitativa, Nominal
+7) Match_W: Cualitativa, Nominal
+8) Survived: Cualitativa, Nominal
+9) AbnormalMatch: Cualitativa, Nominal
+10) TimeAlive: Cuantitativa, Continua
+11) TravelledDistance: Cuantitativa, Continua
+12) RLethalGrenadesThrown: Cuantitativa, Discreta
+13) RNonLethalGrenadesThrown: Cuantitativa, Discreta
+14) PrimaryAssaultRifle: Cuantitativa, Discreta
+15) PrimarySniperRifle: Cuantitativa, Discreta
+16) PrimaryHeavy: Cuantitativa, Discreta
+17) PrimarySMG: Cuantitativa, Discreta
+18) PrimaryPistol: Cuantitativa, Discreta
+19) FirstKillTime: Cuantitativa, Continua
+20) RoundKills: Cuantitativa, Discreta
+21) RoundAssists: Cuantitativa, Discreta
+22) RoundHeadshots: Cuantitativa, Discreta
+23) RoundFlankKills: Cuantitativa, Discreta
+24) RoundStartingEquipmentValue: Cuantitativa, Discreta
+25) TeamStartingEquipmentValue: Cuantitativa, Discreta
+26) MatchKills: Cuantitativa, Discreta
+27) MatchFlankKills: Cuantitativa, Discreta
+28) MatchAssists: Cuantitativa, Discreta
+29) MatchHeadshots: Cuantitativa, Discreta
