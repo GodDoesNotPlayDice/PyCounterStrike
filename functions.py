@@ -1,9 +1,22 @@
-def findMatchs(data):
+def findMatchsIds(data):
     match_id= data['MatchId'] # columnas MatchId
     unique_matchs_maps = match_id.drop_duplicates() # Filtra los IDS
     arr = unique_matchs_maps.to_numpy() # Convierte a array
     lista = arr.tolist() # Convierte a lista  
     return lista
+
+def findMatch(match_id, data):
+    match = data[data['MatchId'] == match_id]
+    return match
+
+def findMatchs(data):
+    matchs_ids = findMatchsIds(data)
+    matchs = []
+    for i in matchs_ids:
+        match = data[data['MatchId'] == i]
+        matchs.append(match)
+    return matchs
+        
 
 def findHalfsByMatch(data, match_id):
     match = data[data['MatchId'] == match_id]
@@ -37,7 +50,8 @@ def findWinnersByHalf(half):
     return [halfOne, halfTwo]
 
 def findMapByMatch(match):
-    return match['Map'].loc[0]
+    return match['Map'].iloc[0]
+
 
 def findMapsByData(data):
     return list(data['Map'].drop_duplicates())
@@ -45,38 +59,47 @@ def findMapsByData(data):
 def findRoundByMatch(match):
     return list(match["RoundId"].drop_duplicates())
 
-def findWinnerByMap(match_id, data):    
-    match = data[data['MatchId'] == match_id]
+def ValidBool(string):
+    if string == "False":
+        return False
+    if string == "True":
+        return True
+    else:
+        return False
+
+
+def findWinnerOfMapByMatch(match):    
     map_ = findMapByMatch(match)
     rounds = findRoundByMatch(match=match)
-    print(f"got rounds {len(rounds)}")
     
     T = 0
     CT = 0
-    
-    print("round for getting")
+
     for i in rounds:
         matchByRound = match[match["RoundId"] == i]
         matchByRoundByT = matchByRound[matchByRound["Team"] == "Terrorist"] 
         matchByRoundByCT = matchByRound[matchByRound["Team"] == "CounterTerrorist"]
-        print("Filttered Match By Round Teams")
         
-        winT = matchByRoundByT["RoundWinner"].drop_duplicates()
-        winCT = matchByRoundByCT["RoundWinner"].drop_duplicates()
-        
-        print(winT)
-        print(winCT)
-        
-        # print("Getting bools")
-        # if winT == True:
-        #     T += 1
-        # if winCT == True:
-        #     CT += 1
+        winT = matchByRoundByT["RoundWinner"].dropna().value_counts().index[0]
+        winCT = matchByRoundByCT["RoundWinner"].dropna().value_counts().index[0]
+    
+        winT = ValidBool(winT)
+        winCT = ValidBool(winCT)
+    
+    
+        if winT == True:
+            T += 1
+        if winCT == True:
+            CT += 1
     
     RoundWinners = {
-        "Terorist": T,
+        "Map": map_,
+        "Terrorist": T,
         "CounterTerrorist": CT
     }
     
     return RoundWinners
+
+    
+    
     
