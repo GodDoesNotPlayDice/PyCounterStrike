@@ -75,12 +75,12 @@ discreto, o variable categórica nominal u ordinal.
 7) Trabaja los missing values (valores NaN) y los datos outliers, considerando las mejores prácticas con respecto al uso de los datos.
  - **Datos outlier**: Valor que se sale del promedio (Valor atipico).
 
-8) Identifica cuales son características significativas para el contexto del objetivo que el equipo se planteó de negocio.
+8) Identifica cuales son características significativas para el contexto del objetivo que el equipo se planteó de negocio. (Hipotesis)
 
-9) Utiliza técnicas de transformación de datos adecuada de acuerdo a la naturaleza de estos.
+9) Utiliza técnicas de transformación de datos adecuada de acuerdo a la naturaleza de estos. (UTF 8)
 
 10) Utiliza las técnicas de transformación necesarias, ya sea de scaling, normalización o encoding dejando listos los datos para la fase de Modeling
-
+(Grafico)
 ### Hipótesis de negocio para regresión: 
 
 1. El tiempo de juego de un jugador influye en su rendimiento en la partida.
