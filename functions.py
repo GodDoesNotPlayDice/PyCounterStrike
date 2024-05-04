@@ -60,37 +60,22 @@ def findRoundByMatch(match):
     return list(match["RoundId"].drop_duplicates())
 
 def ValidBool(string):
-    if string == "False":
-        return False
-    if string == "True":
-        return True
-    else:
-        return False
+    return True if string == "True" else False
+
 
 
 def findWinnerOfMapByMatch(match):    
     map_ = findMapByMatch(match)
     rounds = findRoundByMatch(match=match)
-    
-    T = 0
-    CT = 0
-
+    T, CT = 0,0
     for i in rounds:
         matchByRound = match[match["RoundId"] == i]
-        matchByRoundByT = matchByRound[matchByRound["Team"] == "Terrorist"] 
-        matchByRoundByCT = matchByRound[matchByRound["Team"] == "CounterTerrorist"]
+        matchByRoundByT, matchByRoundByCT = matchByRound[matchByRound["Team"] == "Terrorist"], matchByRound[matchByRound["Team"] == "CounterTerrorist"]
+        winT, winCT = matchByRoundByT["RoundWinner"].dropna().value_counts().index[0], matchByRoundByCT["RoundWinner"].dropna().value_counts().index[0]
+        winT, winCT = ValidBool(winT), ValidBool(winCT)
         
-        winT = matchByRoundByT["RoundWinner"].dropna().value_counts().index[0]
-        winCT = matchByRoundByCT["RoundWinner"].dropna().value_counts().index[0]
-    
-        winT = ValidBool(winT)
-        winCT = ValidBool(winCT)
-    
-    
-        if winT == True:
-            T += 1
-        if winCT == True:
-            CT += 1
+        T += 1 if winT else 0
+        CT += 1 if winCT else 0
     
     RoundWinners = {
         "Map": map_,

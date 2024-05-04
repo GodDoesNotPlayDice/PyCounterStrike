@@ -22,30 +22,46 @@ info_dust2 = [0,0]
 # arr = [inferno1, inferno2]
 # map string (int,int)
 
-for i in matchs:
-    matchs_obj = findWinnerOfMapByMatch(match=i)
-    if matchs_obj["Map"] == maps[0]:
-        info_inferno[0] += matchs_obj["Terrorist"]
-        info_inferno[1] += matchs_obj["CounterTerrorist"]
-    if matchs_obj["Map"] == maps[1]:
-        info_nuke[0] += matchs_obj["Terrorist"]
-        info_nuke[1] += matchs_obj["CounterTerrorist"]
-    if matchs_obj["Map"] == maps[2]:
-        info_mirage[0] += matchs_obj["Terrorist"]
-        info_mirage[1] += matchs_obj["CounterTerrorist"]
-    if matchs_obj["Map"] == maps[3]:
-        info_dust2[0] += matchs_obj["Terrorist"]
-        info_dust2[1] += matchs_obj["CounterTerrorist"]
+# for i in matchs:
+#     matchs_obj = findWinnerOfMapByMatch(match=i)
+#     if matchs_obj["Map"] == maps[0]:
+#         info_inferno[0] += matchs_obj["Terrorist"]
+#         info_inferno[1] += matchs_obj["CounterTerrorist"]
+#     if matchs_obj["Map"] == maps[1]:
+#         info_nuke[0] += matchs_obj["Terrorist"]
+#         info_nuke[1] += matchs_obj["CounterTerrorist"]
+#     if matchs_obj["Map"] == maps[2]:
+#         info_mirage[0] += matchs_obj["Terrorist"]
+#         info_mirage[1] += matchs_obj["CounterTerrorist"]
+#     if matchs_obj["Map"] == maps[3]:
+#         info_dust2[0] += matchs_obj["Terrorist"]
+#         info_dust2[1] += matchs_obj["CounterTerrorist"]
 
-print(info_inferno)
-print(info_nuke)
-print(info_mirage)
-print(info_dust2)
+map_info = {
+    maps[0]: [0, 0],  # Inferno
+    maps[1]: [0, 0],  # Nuke
+    maps[2]: [0, 0],  # Mirage
+    maps[3]: [0, 0]   # Dust2
+}
 
 
-# Preparar datos para graficar
-T = [info_inferno[0], info_nuke[0], info_mirage[0], info_dust2[0]]
-CT = [info_inferno[1], info_nuke[1], info_mirage[1], info_dust2[1]]
+for match in matchs:
+    match_obj = findWinnerOfMapByMatch(match=match)
+    map_name = match_obj["Map"]
+    terrorist_score = match_obj["Terrorist"]
+    counterterrorist_score = match_obj["CounterTerrorist"]
+    
+    # Actualizar la información del mapa correspondiente
+    if map_name in map_info:
+        map_info[map_name][0] += terrorist_score
+        map_info[map_name][1] += counterterrorist_score
+
+print(map_info)
+
+
+# Extraer datos para graficar
+T = [map_info[map_name][0] for map_name in maps]
+CT = [map_info[map_name][1] for map_name in maps]
 x = np.arange(len(maps))  # Índices para las barras
 
 # Graficar
