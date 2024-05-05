@@ -5,6 +5,33 @@ def findMatchsIds(data):
     lista = arr.tolist() # Convierte a lista  
     return lista
 
+def findTimeAliveByTeamByMatch(match):
+    team_CT = match[match['Team'] == "CounterTerrorist"]
+    team_T = match[match['Team'] == "Terrorist"]
+    
+    timeAliveCT = list(team_CT['TimeAlive'].str.replace('.','').astype(float))
+    timeAliveT = list(team_T['TimeAlive'].str.replace('.','').astype(float))
+        
+    return [timeAliveT, timeAliveCT]
+    
+def findTravelledDistanceByTeamByMatch(match):
+    team_CT = match[match['Team'] == "CounterTerrorist"]
+    team_T = match[match['Team'] == "Terrorist"]
+    
+    
+    TravelledDistanceCT = list(team_CT['TravelledDistance'].str.replace(',','.').str.replace('.','').astype(float))
+    TravelledDistanceT = list(team_T['TravelledDistance'].str.replace(',','.').str.replace('.','').astype(float))
+        
+    return [TravelledDistanceT, TravelledDistanceCT]
+
+
+
+
+def findMatchsByMap(data, map):
+    matchs = data[data['Map'] == map]
+    return matchs
+
+
 def findMatch(match_id, data):
     match = data[data['MatchId'] == match_id]
     return match
@@ -17,6 +44,18 @@ def findMatchs(data):
         matchs.append(match)
     return matchs
         
+     
+
+
+
+def findRoundKillsByTeamByMatch(match):
+    team_CT = match[match['Team'] == "CounterTerrorist"]
+    team_T = match[match['Team'] == "Terrorist"]
+    
+    roundKillsT = [i for i in list(team_T['RoundKills']) if i > 0]
+    roundKillsCT = [i for i in list(team_CT['RoundKills']) if i > 0]
+    
+    return [roundKillsT, roundKillsCT ]
 
 def findHalfsByMatch(data, match_id):
     match = data[data['MatchId'] == match_id]

@@ -59,28 +59,26 @@ Realiza lectura de datos considerando técnicas de limpieza y uso de lenguajes d
 
 ### Rubrica
 
-1) Utiliza al menos 4 funciones necesarias para extraer elementos básicos de estadística descriptiva. Interpreta correctamente los elementos estadísticos obtenidos a partir de los datos.
+1) Utiliza al menos 4 funciones necesarias para extraer elementos básicos de estadística descriptiva. Interpreta correctamente los elementos estadísticos obtenidos a partir de los datos. ✅
 
-2) Interpreta los elementos estadísticos obtenidos a partir de los datos
+2) Interpreta los elementos estadísticos obtenidos a partir de los datos ✅
 
-3) Obtiene coeficiente de correlación por sí solo entre las características o bien la matriz de Correlación de Pearson.
+3) Obtiene coeficiente de correlación por sí solo entre las características o bien la matriz de Correlación de Pearson. ✅
 
-4) Interpreta los valores obtenidos identificando valores de correlación directa e inversa.
+4) Interpreta los valores obtenidos identificando valores de correlación directa e inversa. ✅
 
-5) Con el uso de estadísticos obtiene KPI relevantes como cantidad de derrotas, cantidad de triunfos, cantidad de jugadores, promedio de tiempo de partida, etc.
+5) Con el uso de estadísticos obtiene KPI relevantes como cantidad de derrotas, cantidad de triunfos, cantidad de jugadores, promedio de tiempo de partida, etc. ❓
 
-6) Identifica cuando el dato es numérico continuo,
-discreto, o variable categórica nominal u ordinal. 
+6) Identifica cuando el dato es numérico continuo, discreto, o variable categórica nominal u ordinal. ✅
 
 7) Trabaja los missing values (valores NaN) y los datos outliers, considerando las mejores prácticas con respecto al uso de los datos.
- - **Datos outlier**: Valor que se sale del promedio (Valor atipico).
+ - **Datos outlier**: Valor que se sale del promedio (Valor atipico). ✅
 
-8) Identifica cuales son características significativas para el contexto del objetivo que el equipo se planteó de negocio. (Hipotesis)
+8) Identifica cuales son características significativas para el contexto del objetivo que el equipo se planteó de negocio. (Hipotesis) ✅
 
-9) Utiliza técnicas de transformación de datos adecuada de acuerdo a la naturaleza de estos. (UTF 8)
+9) Utiliza técnicas de transformación de datos adecuada de acuerdo a la naturaleza de estos. (UTF 8) ✅
 
-10) Utiliza las técnicas de transformación necesarias, ya sea de scaling, normalización o encoding dejando listos los datos para la fase de Modeling
-(Grafico)
+10) Utiliza las técnicas de transformación necesarias, ya sea de scaling, normalización o encoding dejando listos los datos para la fase de Modeling (Grafico) ✅❓falta scaling
 ### Hipótesis de negocio para regresión: 
 
 1. El tiempo de juego de un jugador influye en su rendimiento en la partida.
@@ -141,3 +139,40 @@ discreto, o variable categórica nominal u ordinal.
 27) MatchFlankKills: Cuantitativa, Discreta
 28) MatchAssists: Cuantitativa, Discreta
 29) MatchHeadshots: Cuantitativa, Discreta
+
+
+### Hipotesis
+Cual es la cantidad de rondas que ganan ambos equipos en los cuatro mapas
+
+#### Creemos que los terroristas ganan mas por las kills que hacen por partida.
+
+
+
+
+#### Creemos que los CT ganaron mas rondas en todas las partidas en dust_2 por la cantida de 
+
+
+
+
+ #### Creemos que en el mapa de Dust 2 los CT ganan mas por el tiempo de vida y distancia recorrdia (Falso)
+Análisis del gráfico de los Terroristas:
+
+Distribución de los puntos: Los puntos se encuentran dispersos por todo el gráfico, sin una tendencia clara. Esto indica que no existe una correlación significativa entre el tiempo de vida y la distancia recorrida para los Terroristas.
+    Interpretación: Este resultado sugiere que la supervivencia de los Terroristas en Dust2 no está directamente relacionada con la distancia que recorren por el mapa. Es decir, no hay una ventaja clara en recorrer más o menos distancia para este equipo.
+
+Análisis del gráfico de los Contra-Terroristas:
+
+Distribución de los puntos: Los puntos se concentran en la parte inferior izquierda del gráfico, lo que indica una tendencia negativa. Esto significa que, a mayor distancia recorrida por los Contra-Terroristas, menor es su tiempo de vida promedio.
+    Interpretación: Este resultado sugiere que los Contra-Terroristas que recorren distancias más largas en Dust2 tienden a morir más rápido que aquellos que se mantienen en posiciones más estáticas. Esto podría deberse a que, al moverse más, se exponen a mayor riesgo de ser detectados y eliminados por los Terroristas.
+
+Relación con el número de rondas ganadas:
+
+Aunque la dispersión del tiempo de vida y la distancia recorrida no muestra una correlación directa con el número de rondas ganadas, sí se puede observar una cierta relación indirecta. Si bien los Terroristas no tienen una ventaja clara en cuanto a la relación entre estas dos variables, los Contra-Terroristas sí parecen tener una desventaja. Al morir más rápido cuando recorren distancias más largas, los Contra-Terroristas podrían tener menos oportunidades de defender sus posiciones y ganar rondas.
+
+Conclusión:
+
+Si bien la dispersión del tiempo de vida y la distancia recorrida no es un factor determinante en el resultado de las rondas en Dust2, sí se puede observar una cierta tendencia que podría favorecer a los Terroristas. La mayor supervivencia de los Terroristas al recorrer distancias similares o menores, en comparación con los Contra-Terroristas, podría ser un factor que contribuya a su mayor número de rondas ganadas en este mapa.
+
+Es importante destacar que este análisis se basa en una única muestra de datos, y que los resultados podrían variar al considerar un conjunto de datos más amplio. 
+
+
