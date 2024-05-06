@@ -10,49 +10,36 @@ db = 'https://raw.githubusercontent.com/razbackup/CSV-EV2/main/dbcs.csv'
 data = pd.read_csv(db, engine='python', sep=';', encoding='utf-8')
 
 # match = findMatch(data=data, match_id=13)
-dust2 = 'de_dust2'
+maps = {
+    'de_mirage': [],
+    'de_inferno': [],
+    'de_nuke': []
+}
+killsbyteam = {
+    'de_mirage' : [],
+    'de_inferno': [],
+    'de_nuke': []
+}
 
-matchs = findMatchsByMap(data, dust2)
-dust2K = [sum(i['RoundKills']) for i in matchs]
+for i in maps:
+    maps[i] = findMatchByMap(data, i)
+    killsbyteam[i] = findRoundKillsByTeamByMatch(maps[i])
+    
 
-t_arr = []
-ct_arr = []
-for i in matchs:
-    rndkills = findRoundKillsByTeamByMatch(i)
-    t_arr.append(sum(rndkills[0]))
-    ct_arr.append(sum(rndkills[1]))
+killsbyteam['de_mirage'] = [sum(killsbyteam['de_mirage'][0]), sum(killsbyteam['de_mirage'][1])]
 
-# Convertir a numpy array si no lo es
-dust2K = np.array(dust2K)
-t_arr = np.array(t_arr)
-ct_arr = np.array(ct_arr)
+killsbyteam['de_inferno'] = [sum(killsbyteam['de_inferno'][0]), sum(killsbyteam['de_inferno'][1])]
 
-# Calcular el coeficiente de correlación de Pearson
-corr_T, _ = pearsonr(t_arr, dust2K)
-corr_CT, _ = pearsonr(ct_arr, dust2K)
+killsbyteam['de_nuke'] = [sum(killsbyteam['de_nuke'][0]), sum(killsbyteam['de_nuke'][1])]
 
-# Calcular la línea de correlación de Pearson para T-side
-slope_T = corr_T * (np.std(t_arr) / np.std(dust2K))
-intercept_T = np.mean(t_arr) - (slope_T * np.mean(dust2K))
 
-# Calcular la línea de correlación de Pearson para CT-side
-slope_CT = corr_CT * (np.std(ct_arr) / np.std(dust2K))
-intercept_CT = np.mean(ct_arr) - (slope_CT * np.mean(dust2K))
-
-# Crear el gráfico de dispersión
-plt.figure(figsize=(10, 6))
-
-# Graficar T-side
-plt.scatter(dust2K, t_arr, color='red', label='T-side')
-plt.plot(dust2K, slope_T*dust2K + intercept_T, color='red', linestyle='--', label=f'Corr Line T-side {corr_T:.2f}')
-
-# Graficar CT-side
-plt.scatter(dust2K, ct_arr, color='blue', label='CT-side')
-plt.plot(dust2K, slope_CT*dust2K + intercept_CT, color='blue', linestyle='--', label=f'Corr Line CT-side {corr_CT:.2f}')
-
-plt.title('Gráfico de dispersión de kills por ronda de los equipos en de_dust2')
-plt.xlabel('Total de kills por ronda')
-plt.ylabel('Total de kills por equipo')
-plt.legend()
-plt.grid(True)
-plt.show()
+# Crear las barras para cada mapa
+for mapa, kills in killsbyteam.items():
+    plt.figure(figsize=(8, 6))
+    plt.bar(['T', 'CT'], kills, color=['blue', 'orange'])
+    plt.xlabel('Equipo')
+    plt.ylabel('Kills')
+    plt.title('Kills por equipo en ' + mapa)
+    #img
+    plt.savefig(f'xd {mapa}.png')
+    plt.show()

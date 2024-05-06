@@ -25,7 +25,7 @@ def findTravelledDistanceByTeamByMatch(match):
     return [TravelledDistanceT, TravelledDistanceCT]
 
 
-def findMatchsByMap(data, map):
+def findMatchByMap(data, map):
     matchs = data[data['Map'] == map]
     return matchs
 

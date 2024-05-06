@@ -67,18 +67,18 @@ Realiza lectura de datos considerando técnicas de limpieza y uso de lenguajes d
 
 4) Interpreta los valores obtenidos identificando valores de correlación directa e inversa. ✅
 
-5) Con el uso de estadísticos obtiene KPI relevantes como cantidad de derrotas, cantidad de triunfos, cantidad de jugadores, promedio de tiempo de partida, etc. ❓
+5) Con el uso de estadísticos obtiene KPI relevantes como cantidad de derrotas, cantidad de triunfos, cantidad de jugadores, promedio de tiempo de partida, etc. ❓ (.describe() en las columnas que elegi para estudiar)
 
 6) Identifica cuando el dato es numérico continuo, discreto, o variable categórica nominal u ordinal. ✅
 
 7) Trabaja los missing values (valores NaN) y los datos outliers, considerando las mejores prácticas con respecto al uso de los datos.
- - **Datos outlier**: Valor que se sale del promedio (Valor atipico). ✅
+ - **Datos outlier**: Valor que se sale del promedio (Valor atipico). ✅ (Marcar valor atipico)
 
 8) Identifica cuales son características significativas para el contexto del objetivo que el equipo se planteó de negocio. (Hipotesis) ✅
 
 9) Utiliza técnicas de transformación de datos adecuada de acuerdo a la naturaleza de estos. (UTF 8) ✅
 
-10) Utiliza las técnicas de transformación necesarias, ya sea de scaling, normalización o encoding dejando listos los datos para la fase de Modeling (Grafico) ✅❓falta scaling
+10) Utiliza las técnicas de transformación necesarias, ya sea de scaling, normalización o encoding dejando listos los datos para la fase de Modeling (Grafico con Scaling) 
 ### Hipótesis de negocio para regresión: 
 
 1. El tiempo de juego de un jugador influye en su rendimiento en la partida.
