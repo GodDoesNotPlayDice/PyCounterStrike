@@ -144,32 +144,37 @@ Realiza lectura de datos considerando técnicas de limpieza y uso de lenguajes d
 ### Hipotesis
 Cual es la cantidad de rondas que ganan ambos equipos en los cuatro mapas
 
-#### Creemos que los terroristas ganan mas por las kills que hacen por partida.
+#### Creemos que los terroristas ganan mas rondas por las kills que hacen por partida en los mapas de (inferno, dust y mirage).
 
 
 
 
-#### Creemos que los CT ganaron mas rondas en todas las partidas en dust_2 por la cantidad de kills contra los terroristas
+#### Creemos que los CT ganaron mas rondas en todas las partidas en dust_2 por la cantidad de kills contra los terroristas (Correcto)
 
-
+Se pueden extraer dos conclusiones principales de este gráfico:
+- Existe una correlación débilmente positiva entre el número total de asesinatos por ronda y el número de asesinatos por parte de los equipos T y CT. Esto significa que a medida que aumenta el número total de asesinatos por ronda, el número de asesinatos por ambos equipos también tiende a aumentar. El coeficiente de correlación para el lado T es de 0.77, y para el lado CT es de 0.87.
+- El equipo CT tiende a tener un mayor número de asesinatos por ronda que el equipo T. Esto se refleja en el hecho de que los puntos de datos del lado CT generalmente están por encima de los puntos de datos del lado T en el diagrama de dispersión.
 
 
  #### Creemos que en el mapa de Dust 2 los CT ganan mas por el tiempo de vida y distancia recorrdia (Falso)
-Análisis del gráfico de los Terroristas:
+
+##### Análisis del gráfico de los Terroristas:
 
 Distribución de los puntos: Los puntos se encuentran dispersos por todo el gráfico, sin una tendencia clara. Esto indica que no existe una correlación significativa entre el tiempo de vida y la distancia recorrida para los Terroristas.
-    Interpretación: Este resultado sugiere que la supervivencia de los Terroristas en Dust2 no está directamente relacionada con la distancia que recorren por el mapa. Es decir, no hay una ventaja clara en recorrer más o menos distancia para este equipo.
 
-Análisis del gráfico de los Contra-Terroristas:
+Interpretación: Este resultado sugiere que la supervivencia de los Terroristas en Dust2 no está directamente relacionada con la distancia que recorren por el mapa. Es decir, no hay una ventaja clara en recorrer más o menos distancia para este equipo.
+
+##### Análisis del gráfico de los Contra-Terroristas:
 
 Distribución de los puntos: Los puntos se concentran en la parte inferior izquierda del gráfico, lo que indica una tendencia negativa. Esto significa que, a mayor distancia recorrida por los Contra-Terroristas, menor es su tiempo de vida promedio.
-    Interpretación: Este resultado sugiere que los Contra-Terroristas que recorren distancias más largas en Dust2 tienden a morir más rápido que aquellos que se mantienen en posiciones más estáticas. Esto podría deberse a que, al moverse más, se exponen a mayor riesgo de ser detectados y eliminados por los Terroristas.
 
-Relación con el número de rondas ganadas:
+Interpretación: Este resultado sugiere que los Contra-Terroristas que recorren distancias más largas en Dust2 tienden a morir más rápido que aquellos que se mantienen en posiciones más estáticas. Esto podría deberse a que, al moverse más, se exponen a mayor riesgo de ser detectados y eliminados por los Terroristas.
+
+##### Relación con el número de rondas ganadas:
 
 Aunque la dispersión del tiempo de vida y la distancia recorrida no muestra una correlación directa con el número de rondas ganadas, sí se puede observar una cierta relación indirecta. Si bien los Terroristas no tienen una ventaja clara en cuanto a la relación entre estas dos variables, los Contra-Terroristas sí parecen tener una desventaja. Al morir más rápido cuando recorren distancias más largas, los Contra-Terroristas podrían tener menos oportunidades de defender sus posiciones y ganar rondas.
 
-Conclusión:
+##### Conclusión:
 
 Si bien la dispersión del tiempo de vida y la distancia recorrida no es un factor determinante en el resultado de las rondas en Dust2, sí se puede observar una cierta tendencia que podría favorecer a los Terroristas. La mayor supervivencia de los Terroristas al recorrer distancias similares o menores, en comparación con los Contra-Terroristas, podría ser un factor que contribuya a su mayor número de rondas ganadas en este mapa.
 

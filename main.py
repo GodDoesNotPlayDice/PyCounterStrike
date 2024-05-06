@@ -3,14 +3,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import pearsonr
-import seaborn as sns
-from sklearn.preprocessing import MinMaxScaler
+# import seaborn as sns
 
 # Cargar los datos
 db = 'https://raw.githubusercontent.com/razbackup/CSV-EV2/main/dbcs.csv'
 data = pd.read_csv(db, engine='python', sep=';', encoding='utf-8')
 
-# Estudiar la duración de vida de los dos bandos por ronda para entender cómo influye en el resultado de la ronda
 # match = findMatch(data=data, match_id=13)
 dust2 = 'de_dust2'
 
