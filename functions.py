@@ -25,8 +25,6 @@ def findTravelledDistanceByTeamByMatch(match):
     return [TravelledDistanceT, TravelledDistanceCT]
 
 
-
-
 def findMatchsByMap(data, map):
     matchs = data[data['Map'] == map]
     return matchs
@@ -45,7 +43,11 @@ def findMatchs(data):
     return matchs
         
      
-
+def findMatchsByMap(data, map_):
+    matchs_map = data[data['Map'] == map_]
+    matchs_id = list(matchs_map['MatchId'].drop_duplicates())
+    matchs = [findMatch(i, data) for i in matchs_id]
+    return matchs
 
 
 def findRoundKillsByTeamByMatch(match):

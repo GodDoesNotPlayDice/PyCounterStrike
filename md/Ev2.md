@@ -149,7 +149,7 @@ Cual es la cantidad de rondas que ganan ambos equipos en los cuatro mapas
 
 
 
-#### Creemos que los CT ganaron mas rondas en todas las partidas en dust_2 por la cantida de 
+#### Creemos que los CT ganaron mas rondas en todas las partidas en dust_2 por la cantidad de kills contra los terroristas
 
 
 

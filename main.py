@@ -11,33 +11,50 @@ db = 'https://raw.githubusercontent.com/razbackup/CSV-EV2/main/dbcs.csv'
 data = pd.read_csv(db, engine='python', sep=';', encoding='utf-8')
 
 # Estudiar la duración de vida de los dos bandos por ronda para entender cómo influye en el resultado de la ronda
-match = findMatch(data=data, match_id=4)
+# match = findMatch(data=data, match_id=13)
 dust2 = 'de_dust2'
 
-# Econtrar el match de dust2
-m = findMatchsByMap(data, dust2)
+matchs = findMatchsByMap(data, dust2)
+dust2K = [sum(i['RoundKills']) for i in matchs]
 
-# Time and Distance (X , Y)
-dust2_map = [findTimeAliveByTeamByMatch(m), findTravelledDistanceByTeamByMatch(m)]
+t_arr = []
+ct_arr = []
+for i in matchs:
+    rndkills = findRoundKillsByTeamByMatch(i)
+    t_arr.append(sum(rndkills[0]))
+    ct_arr.append(sum(rndkills[1]))
 
-# Calcular el coeficiente de correlación de Pearson para Terroristas y Contra-Terroristas en de_dust2
-pearson_corr_T, _ = pearsonr(dust2_map[0][0], dust2_map[1][0])
-pearson_corr_CT, _ = pearsonr(dust2_map[0][1], dust2_map[1][1])
+# Convertir a numpy array si no lo es
+dust2K = np.array(dust2K)
+t_arr = np.array(t_arr)
+ct_arr = np.array(ct_arr)
 
-# Graficar el gráfico de correlación de Pearson
-fig, axs = plt.subplots(2, 1, figsize=(10, 10))
+# Calcular el coeficiente de correlación de Pearson
+corr_T, _ = pearsonr(t_arr, dust2K)
+corr_CT, _ = pearsonr(ct_arr, dust2K)
 
-# Para Terroristas
-sns.regplot(x=dust2_map[0][0], y=dust2_map[1][0], ax=axs[0], color='red', scatter_kws={'alpha':0.4})
-axs[0].set_title(f'de_dust2 - Terroristas\nPearson correlación: {pearson_corr_T:.2f}')
-axs[0].set_xlabel('Tiempo en vida (segundos)')
-axs[0].set_ylabel('Distancia recorrida (metros)')
+# Calcular la línea de correlación de Pearson para T-side
+slope_T = corr_T * (np.std(t_arr) / np.std(dust2K))
+intercept_T = np.mean(t_arr) - (slope_T * np.mean(dust2K))
 
-# Para Contra-Terroristas
-sns.regplot(x=dust2_map[0][1], y=dust2_map[1][1], ax=axs[1], color='blue', scatter_kws={'alpha':0.4})
-axs[1].set_title(f'de_dust2 - Contra-Terroristas\nPearson correlación: {pearson_corr_CT:.2f}')
-axs[1].set_xlabel('Tiempo en vida (segundos)')
-axs[1].set_ylabel('Distancia recorrida (metros)')
+# Calcular la línea de correlación de Pearson para CT-side
+slope_CT = corr_CT * (np.std(ct_arr) / np.std(dust2K))
+intercept_CT = np.mean(ct_arr) - (slope_CT * np.mean(dust2K))
 
-plt.tight_layout()
+# Crear el gráfico de dispersión
+plt.figure(figsize=(10, 6))
+
+# Graficar T-side
+plt.scatter(dust2K, t_arr, color='red', label='T-side')
+plt.plot(dust2K, slope_T*dust2K + intercept_T, color='red', linestyle='--', label=f'Corr Line T-side {corr_T:.2f}')
+
+# Graficar CT-side
+plt.scatter(dust2K, ct_arr, color='blue', label='CT-side')
+plt.plot(dust2K, slope_CT*dust2K + intercept_CT, color='blue', linestyle='--', label=f'Corr Line CT-side {corr_CT:.2f}')
+
+plt.title('Gráfico de dispersión de kills por ronda de los equipos en de_dust2')
+plt.xlabel('Total de kills por ronda')
+plt.ylabel('Total de kills por equipo')
+plt.legend()
+plt.grid(True)
 plt.show()
